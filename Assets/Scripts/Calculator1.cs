@@ -4,6 +4,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+using UnityEngine.Windows;
+
 public class Calculator1 : MonoBehaviour
 {
     public TMP_InputField inputA;
@@ -24,11 +26,97 @@ public class Calculator1 : MonoBehaviour
     public TMP_InputField outputAnorB;
     public Button calculateButton;
     public TMP_Text errorText;
+
+    public TMP_InputField probA;
+    public TMP_InputField probB;
+    public TMP_InputField numAN;
+    public TMP_InputField numBM;
+    public TMP_InputField outputANtimes;
+    public TMP_InputField outputANot;
+    public TMP_InputField outputBMtimes;
+    public TMP_InputField outputBNot;
+    public TMP_InputField outputneitherAB;
+    public TMP_InputField outputbothAB;
+    public TMP_InputField outputANtimesBNot;
+    public TMP_InputField outputBMtimesANot;
+    public TMP_InputField outputABNot;
+    public TMP_InputField outputBANot;
+    public Button calculateButton2;
+    public TMP_Text errorText2;
+
+    
     void Start()
     {
         calculateButton.onClick.AddListener(CalculateProbability);
-    }
+        calculateButton2.onClick.AddListener(CalculateProbability2);
 
+    }
+   
+    void CalculateProbability2()
+    {
+        // Retrieve input values
+        float a = GetValidatedProbability(probA.text);
+        float b = GetValidatedProbability(probB.text);
+
+        int n;
+        int m;
+        if (a == -1 | b == -1)
+        {
+            errorText2.text = "Failed. A or B must be within [0,1] ";
+            outputANtimes.text = "Fail";
+            outputANot.text = "Fail";
+            outputBMtimes.text = "Fail";
+            outputBNot.text = "Fail";
+            outputneitherAB.text = "Fail";
+            outputbothAB.text = "Fail";
+            outputANtimesBNot.text = "Fail";
+            outputBMtimesANot.text = "Fail";
+            outputABNot.text = "Fail";
+            outputBANot.text = "Fail";
+        }
+        else if (int.TryParse(numAN.text, out n) & (n > 0) & int.TryParse(numBM.text, out m) & (m > 0))
+        {
+            // Calculate probabilities
+            float ANtimes = Mathf.Pow(a, n);
+            float ANot = Mathf.Pow(1 - a, n);
+            float BMtimes = Mathf.Pow(b, m);
+            float BNot = Mathf.Pow(1 - b, m);
+            float neitherAB = Mathf.Pow(1 - a, n) * Mathf.Pow(1 - b, m);
+            float bothAB = (1 - Mathf.Pow(1 - a, n)) * (1 - Mathf.Pow(1 - b, m));
+            float ANtimesBNot = Mathf.Pow(a, n) * Mathf.Pow(1 - b, m);
+            float BMtimesANot = Mathf.Pow(1 - a, n) * Mathf.Pow(b, m);
+            float ABNot = (1 - Mathf.Pow(1 - a, n)) * Mathf.Pow(1 - b, m);
+            float BANot = Mathf.Pow(1 - a, n) * (1 - Mathf.Pow(1 - b, m));
+
+            // Display results
+            outputANtimes.text = ANtimes.ToString();
+            outputANot.text = ANot.ToString();
+            outputBMtimes.text = BMtimes.ToString();
+            outputBNot.text = BNot.ToString();
+            outputneitherAB.text = neitherAB.ToString();
+            outputbothAB.text = bothAB.ToString();
+            outputANtimesBNot.text = ANtimesBNot.ToString();
+            outputBMtimesANot.text = BMtimesANot.ToString();
+            outputABNot.text = ABNot.ToString();
+            outputBANot.text = BANot.ToString();
+        }
+        else
+        {
+            errorText2.text = "Failed. Number of repetitions must be integer.";
+            outputANtimes.text = "Fail";
+            outputANot.text = "Fail";
+            outputBMtimes.text = "Fail";
+            outputBNot.text = "Fail";
+            outputneitherAB.text = "Fail";
+            outputbothAB.text = "Fail";
+            outputANtimesBNot.text = "Fail";
+            outputBMtimesANot.text = "Fail";
+            outputABNot.text = "Fail";
+            outputBANot.text = "Fail";
+        }
+
+
+    }
     void CalculateProbability()
     {
         // Retrieve input values
@@ -67,33 +155,49 @@ public class Calculator1 : MonoBehaviour
                 a = (aOrB - b) / (1 - b);
             }
         }
-        if (a == -1 | b == -1)
+        if (a < 0 | b < 0)
         {
-            outputA.text = "Failed to calculate based on given data.";
+
+            errorText.text = "Failed to calculate based on given data.";
+            outputA.text = "Fail";
+            outputB.text = "Fail";
+            outputNotA.text = "Fail";
+            outputNotB.text = "Fail";
+            outputAandB.text = "Fail";
+            outputAorB.text = "Fail";
+            outputAxorB.text = "Fail";
+            outputAnorB.text = "Fail";
         }
         else
         {
+            errorText.text = "";
             notA = 1 - a;
             notB = 1 - b;
             aAndB = a * b;
             aOrB = a + b - a * b;
             aXorB = a + b - 2 * a * b;
             aNorB = 1 - aOrB;
+            outputA.text = a.ToString();
+            outputB.text = b.ToString();
+            outputNotA.text = notA.ToString();
+            outputNotB.text = notB.ToString();
+            outputAandB.text = aAndB.ToString();
+            outputAorB.text = aOrB.ToString();
+            outputAxorB.text = aXorB.ToString();
+            outputAnorB.text = aNorB.ToString();
         }
 
-        outputA.text = a.ToString();
-        outputB.text = b.ToString();
-        outputNotA.text = notA.ToString();
-        outputNotB.text = notB.ToString();
-        outputAandB.text = aAndB.ToString();
-        outputAorB.text = aOrB.ToString();
-        outputAxorB.text = aXorB.ToString();
-        outputAnorB.text = aNorB.ToString();
+       
     }
 
     float GetValidatedProbability(string input)
     {
         float value = 0;
+        if (input.Equals(""))
+        {
+            return -1;
+        }
+        
         if (float.TryParse(input, out value))
         {
             if ((value >= 0) & (value <= 1))
@@ -102,6 +206,21 @@ public class Calculator1 : MonoBehaviour
             }
         }
         errorText.text = "Input value not a number or not within [0,1].";
+        return -1;
+    }
+    float GetValidatedProbability2(string input)
+    {
+        float value = 0;
+        
+
+        if (float.TryParse(input, out value))
+        {
+            if ((value >= 0) & (value <= 1))
+            {
+                return value;
+            }
+        }
+        errorText2.text = "Input probability not valid.";
         return -1;
     }
 }
