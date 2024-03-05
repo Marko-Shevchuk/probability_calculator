@@ -43,11 +43,29 @@ public class Calculator2 : MonoBehaviour
     public TMP_InputField outputBi6;
     public TMP_InputField outputBi7;
     public TMP_InputField outputBi8;
+    
+
+    //bayesian formula fields
+    public TMP_InputField outputBiA1;
+    public TMP_InputField outputBiA2;
+    public TMP_InputField outputBiA3;
+    public TMP_InputField outputBiA4;
+    public TMP_InputField outputBiA5;
+    public TMP_InputField outputBiA6;
+    public TMP_InputField outputBiA7;
+    public TMP_InputField outputBiA8;
+    public TMP_InputField outputBiNotA1;
+    public TMP_InputField outputBiNotA2;
+    public TMP_InputField outputBiNotA3;
+    public TMP_InputField outputBiNotA4;
+    public TMP_InputField outputBiNotA5;
+    public TMP_InputField outputBiNotA6;
+    public TMP_InputField outputBiNotA7;
+    public TMP_InputField outputBiNotA8;
+
+
     public Button calculateButton;
     public TMP_Text errorText;
-
-
-
     void Start()
     {
         calculateButton.onClick.AddListener(CalculateFullProbability);
@@ -58,14 +76,12 @@ public class Calculator2 : MonoBehaviour
     void CalculateFullProbability()
     {
         // Initialize variables to hold the probabilities
-        float P_A = GetValidatedProbability(A.text);
-        float[] P_Bi = new float[8];
-        float[] P_A_given_Bi = new float[8];
+        double P_A = GetValidatedProbability(A.text);
+        double[] P_Bi = new double[8];
+        double[] P_A_given_Bi = new double[8];
 
-        // Check if any input is invalid
         bool invalidInput = false;
 
-        // Get the probabilities for each Bi
         for (int i = 0; i < 8; i++)
         {
             P_Bi[i] = GetValidatedProbability(GetBiInputField(i).text);
@@ -76,43 +92,195 @@ public class Calculator2 : MonoBehaviour
                 invalidInput = true;
             }
         }
+        if (P_A == -2) invalidInput = true;
 
-        // If any input is invalid, set error text and return
-        if (invalidInput || P_A == -2)
+        if (invalidInput)
         {
             errorText.text = "Invalid input. Please enter valid probabilities.";
             return;
         }
 
-        // Calculate missing values
+        
+        int missingIndex = -1;
+        int endCount = -1;
+        bool dbz = false;
         for (int i = 0; i < 8; i++)
         {
-            if (P_Bi[i] == -1)
+            GetOutputABiField(i).text = GetABiInputField(i).text;
+            GetOutputBiField(i).text = GetBiInputField(i).text;
+            if ((P_A_given_Bi[i] == -1) ^ (P_Bi[i] == -1))
             {
-                // Calculate P(Bi) if not given
-                P_Bi[i] = P_A_given_Bi[i] * P_A;
+                if (missingIndex != -1)
+                {
+                    invalidInput = true;
+                    break;
+                }
+                else
+                {
+                    missingIndex = i;
+                }
+                
+                
             }
-            else if (P_A_given_Bi[i] == -1)
+            if (P_A_given_Bi[i] == -1 && P_Bi[i] == -1)
             {
-                // Calculate P(A|Bi) if not given
-                P_A_given_Bi[i] = P_A * P_Bi[i];
+                endCount = i;
+                break;
             }
-            else if (P_A == -1)
+            
+        }
+        if (endCount == -1) endCount = 8;
+        if (invalidInput)
+        {
+            errorText.text = "Can't calculate anything if 2 or more things are missing.";
+            return;
+        }
+        if (P_A == -1)
+        {
+            double sum = 0;
+            for (int i = 0; i < endCount; i++)
             {
-                // Calculate P(A) if not given
-                P_A = P_A_given_Bi[i] / P_Bi[i];
+                sum += P_Bi[i];
+            }
+            if (sum - 1 > 0.0002)
+            {
+                invalidInput = true;
+                errorText.text = "The sum of Bi probabilities must be equal to 1.";
+            }
+        }
+        if (P_A == -1)
+        {
+            P_A = 0;
+
+            // Calculate P(A) if not given
+            for (int i = 0; i < endCount; i++)
+            {
+                if (P_A_given_Bi[i] == -1 ^ P_Bi[i] == -1)
+                {
+                    invalidInput = true;
+                    break;
+                }
+                if (P_A_given_Bi[i] == -1 && P_Bi[i] == -1)
+                {
+                    endCount = i;
+                    break;
+                }
+                P_A += P_A_given_Bi[i] * P_Bi[i];
+            }
+            
+            if (invalidInput)
+            {
+                errorText.text = "Invalid input. Can't calculate P(A) if not all data is given.";
+                return;
+            }
+            else
+            {
+                outputA.text = P_A.ToString();
+            }
+        }
+        else
+        {
+            outputA.text = A.text;
+            double remainderA = P_A;
+            for (int i = 0; i < endCount; i++)
+            {
+                if (i == missingIndex)
+                {
+                    continue;
+                }
+                remainderA -= P_A_given_Bi[i] * P_Bi[i];
+            }
+            if (P_Bi[missingIndex] == -1 && P_A_given_Bi[missingIndex] != -1)
+            {
+                if (P_A_given_Bi[missingIndex] == 0)
+                {
+                    GetOutputBiField(missingIndex).text = "???";
+                    GetOutputABiField(missingIndex).text = "???";
+                    dbz = true;
+                }
+                else
+                {
+                    P_Bi[missingIndex] = remainderA / P_A_given_Bi[missingIndex];
+                    GetOutputBiField(missingIndex).text = P_Bi[missingIndex].ToString();
+                }
+                
+            }
+            else if (P_Bi[missingIndex] != -1 && P_A_given_Bi[missingIndex] == -1)
+            {
+                if (P_Bi[missingIndex] == 0)
+                {
+                    GetOutputABiField(missingIndex).text = "???";
+                    GetOutputBiField(missingIndex).text = "???";
+                    dbz = true;
+                }
+                else
+                {
+                    P_A_given_Bi[missingIndex] = remainderA / P_Bi[missingIndex];
+                    GetOutputABiField(missingIndex).text = P_A_given_Bi[missingIndex].ToString();
+                }
+                
+            }
+            else
+            {
+                invalidInput = true;
+                errorText.text = "Data doesn't add up.";
             }
 
-            // Update the output fields
-            GetOutputBiField(i).text = P_Bi[i].ToString();
-            GetOutputABiField(i).text = P_A_given_Bi[i].ToString();
         }
 
-        // Update the output field for P(A)
-        outputA.text = P_A.ToString();
+        if (invalidInput)
+        {
+            outputA.text = "";
+            for (int i = 0; i < 8; i++)
+            {
+                
+                GetOutputABiField(i).text = "";
+                GetOutputBiField(i).text = "";
+            }
+        }
+        else if (dbz == false)
+        {
+            // Calculate P(Bi|A) and P(Bi|NOT A) using Bayes' formula
+            for (int i = 0; i < endCount; i++)
+            {
+                if (P_A_given_Bi[i] != -1 && P_Bi[i] != -1)
+                {
+                    double P_Bi_given_A = P_Bi[i] * P_A_given_Bi[i] / P_A;
+                    double P_Bi_given_NotA = P_Bi[i] * (1 - P_A_given_Bi[i]) / (1 - P_A);
+
+                    GetOutputBiAField(i).text = P_Bi_given_A.ToString();
+                    GetOutputBiNotAField(i).text = P_Bi_given_NotA.ToString();
+                }
+                else
+                {
+                    errorText.text += "Bayesian calculation failed.";
+                }
+            }
+        }
+        else
+        {
+            errorText.text = "Division by zero detected.";
+        }
+    }
+    double GetValidatedProbability(string input)
+    {
+        double value = 0;
+        if (string.IsNullOrEmpty(input))
+        {
+            return -1;
+        }
+
+        if (double.TryParse(input, out value))
+        {
+            if ((value >= 0) & (value <= 1))
+            {
+                return value;
+            }
+        }
+        errorText.text = "Input value not a number or not within [0,1].";
+        return -2;
     }
 
-    // Helper methods to get the input and output fields
     TMP_InputField GetBiInputField(int index)
     {
         switch (index)
@@ -176,24 +344,37 @@ public class Calculator2 : MonoBehaviour
             default: return null;
         }
     }
-
-
-    float GetValidatedProbability(string input)
+    TMP_InputField GetOutputBiAField(int index)
     {
-        float value = 0;
-        if (input.Equals(""))
+        switch (index)
         {
-            return -1;
+            case 0: return outputBiA1;
+            case 1: return outputBiA2;
+            case 2: return outputBiA3;
+            case 3: return outputBiA4;
+            case 4: return outputBiA5;
+            case 5: return outputBiA6;
+            case 6: return outputBiA7;
+            case 7: return outputBiA8;
+            default: return null;
         }
-
-        if (float.TryParse(input, out value))
-        {
-            if ((value >= 0) & (value <= 1))
-            {
-                return value;
-            }
-        }
-        errorText.text = "Input value not a number or not within [0,1].";
-        return -2;
     }
+
+    TMP_InputField GetOutputBiNotAField(int index)
+    {
+        switch (index)
+        {
+            case 0: return outputBiNotA1;
+            case 1: return outputBiNotA2;
+            case 2: return outputBiNotA3;
+            case 3: return outputBiNotA4;
+            case 4: return outputBiNotA5;
+            case 5: return outputBiNotA6;
+            case 6: return outputBiNotA7;
+            case 7: return outputBiNotA8;
+            default: return null;
+        }
+    }
+
+    
 }
