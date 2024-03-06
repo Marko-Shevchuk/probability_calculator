@@ -227,7 +227,7 @@ public class Calculator2 : MonoBehaviour
             }
 
         }
-
+        if (endCount == 0) outputA.text = "";
         if (invalidInput)
         {
             outputA.text = "";

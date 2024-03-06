@@ -63,16 +63,16 @@ public class Calculator1 : MonoBehaviour
         if (a == -1 | b == -1)
         {
             errorText2.text = "Failed. A or B must be within [0,1] ";
-            outputANtimes.text = "Fail";
-            outputANot.text = "Fail";
-            outputBMtimes.text = "Fail";
-            outputBNot.text = "Fail";
-            outputneitherAB.text = "Fail";
-            outputbothAB.text = "Fail";
-            outputANtimesBNot.text = "Fail";
-            outputBMtimesANot.text = "Fail";
-            outputABNot.text = "Fail";
-            outputBANot.text = "Fail";
+            outputANtimes.text = "";
+            outputANot.text = "";
+            outputBMtimes.text = "";
+            outputBNot.text = "";
+            outputneitherAB.text = "";
+            outputbothAB.text = "";
+            outputANtimesBNot.text = "";
+            outputBMtimesANot.text = "";
+            outputABNot.text = "";
+            outputBANot.text = "";
         }
         else if (int.TryParse(numAN.text, out n) & (n > 0) & int.TryParse(numBM.text, out m) & (m > 0))
         {
@@ -103,16 +103,16 @@ public class Calculator1 : MonoBehaviour
         else
         {
             errorText2.text = "Failed. Number of repetitions must be integer.";
-            outputANtimes.text = "Fail";
-            outputANot.text = "Fail";
-            outputBMtimes.text = "Fail";
-            outputBNot.text = "Fail";
-            outputneitherAB.text = "Fail";
-            outputbothAB.text = "Fail";
-            outputANtimesBNot.text = "Fail";
-            outputBMtimesANot.text = "Fail";
-            outputABNot.text = "Fail";
-            outputBANot.text = "Fail";
+            outputANtimes.text = "";
+            outputANot.text = "";
+            outputBMtimes.text = "";
+            outputBNot.text = "";
+            outputneitherAB.text = "";
+            outputbothAB.text = "";
+            outputANtimesBNot.text = "";
+            outputBMtimesANot.text = "";
+            outputABNot.text = "";
+            outputBANot.text = "";
         }
 
 
@@ -159,14 +159,14 @@ public class Calculator1 : MonoBehaviour
         {
 
             errorText.text = "Failed to calculate based on given data.";
-            outputA.text = "Fail";
-            outputB.text = "Fail";
-            outputNotA.text = "Fail";
-            outputNotB.text = "Fail";
-            outputAandB.text = "Fail";
-            outputAorB.text = "Fail";
-            outputAxorB.text = "Fail";
-            outputAnorB.text = "Fail";
+            outputA.text = "";
+            outputB.text = "";
+            outputNotA.text = "";
+            outputNotB.text = "";
+            outputAandB.text = "";
+            outputAorB.text = "";
+            outputAxorB.text = "";
+            outputAnorB.text = "";
         }
         else
         {
