@@ -50,6 +50,7 @@ public class CanvasSwitch : MonoBehaviour
         RevertStyle(canvas1Button);
         RevertStyle(canvas2Button);
     }
+
     void MakeButtonBoldAndDarkenBackground(Button button)
     {
 
