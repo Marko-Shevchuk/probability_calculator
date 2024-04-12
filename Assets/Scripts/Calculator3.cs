@@ -19,10 +19,6 @@ public class BinomialProbabilityCalculator : MonoBehaviour
     public Button calculateButton;
     public TMP_Text errorText;
 
-
-
-
-
     public TMP_InputField outputExactlyK1Field; 
     public TMP_InputField outputExactlyK2Field; 
     public TMP_InputField outputMoreThanK1Field; 
@@ -63,7 +59,6 @@ public class BinomialProbabilityCalculator : MonoBehaviour
             k1ToK2Probability += CalculateBinomialProbability(n, i, p, q);
         }
         outputK1ToK2Field.text = k1ToK2Probability.ToString("F6");
-        
 
 
         double exactlyK1Probability = CalculateBinomialProbability(n, k1, p, q);

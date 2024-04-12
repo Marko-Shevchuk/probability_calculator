@@ -69,8 +69,6 @@ public class Calculator2 : MonoBehaviour
     void Start()
     {
         calculateButton.onClick.AddListener(CalculateFullProbability);
-
-
     }
 
     void CalculateFullProbability()
@@ -80,7 +78,7 @@ public class Calculator2 : MonoBehaviour
         double[] P_Bi = new double[8];
         double[] P_A_given_Bi = new double[8];
 
-        bool invalidInput = false;
+        bool invalidState = false;
 
         for (int i = 0; i < 8; i++)
         {
@@ -89,12 +87,12 @@ public class Calculator2 : MonoBehaviour
 
             if (P_Bi[i] == -2 || P_A_given_Bi[i] == -2)
             {
-                invalidInput = true;
+                invalidState = true;
             }
         }
-        if (P_A == -2) invalidInput = true;
+        if (P_A == -2) invalidState = true;
 
-        if (invalidInput)
+        if (invalidState)
         {
             errorText.text = "Invalid input. Please enter valid probabilities.";
             return;
@@ -112,7 +110,7 @@ public class Calculator2 : MonoBehaviour
             {
                 if (missingIndex != -1)
                 {
-                    invalidInput = true;
+                    invalidState = true;
                     break;
                 }
                 else
@@ -130,7 +128,7 @@ public class Calculator2 : MonoBehaviour
             
         }
         if (endCount == -1) endCount = 8;
-        if (invalidInput)
+        if (invalidState)
         {
             errorText.text = "Can't calculate anything if 2 or more things are missing.";
             return;
@@ -142,9 +140,9 @@ public class Calculator2 : MonoBehaviour
             {
                 sum += P_Bi[i];
             }
-            if (sum - 1 > 0.0002)
+            if (sum - 1 > 0.00025)
             {
-                invalidInput = true;
+                invalidState = true;
                 errorText.text = "The sum of Bi probabilities must be equal to 1.";
             }
         }
@@ -157,7 +155,7 @@ public class Calculator2 : MonoBehaviour
             {
                 if (P_A_given_Bi[i] == -1 ^ P_Bi[i] == -1)
                 {
-                    invalidInput = true;
+                    invalidState = true;
                     break;
                 }
                 if (P_A_given_Bi[i] == -1 && P_Bi[i] == -1)
@@ -168,7 +166,7 @@ public class Calculator2 : MonoBehaviour
                 P_A += P_A_given_Bi[i] * P_Bi[i];
             }
             
-            if (invalidInput)
+            if (invalidState)
             {
                 errorText.text = "Invalid input. Can't calculate P(A) if not all data is given.";
                 return;
@@ -222,13 +220,13 @@ public class Calculator2 : MonoBehaviour
             }
             else
             {
-                invalidInput = true;
+                invalidState = true;
                 errorText.text = "Data doesn't add up.";
             }
 
         }
         if (endCount == 0) outputA.text = "";
-        if (invalidInput)
+        if (invalidState)
         {
             outputA.text = "";
             for (int i = 0; i < 8; i++)

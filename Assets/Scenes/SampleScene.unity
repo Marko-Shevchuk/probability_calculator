@@ -1152,7 +1152,7 @@ GameObject:
   - component: {fileID: 59850253}
   - component: {fileID: 59850252}
   m_Layer: 5
-  m_Name: ProbBoth (2)
+  m_Name: ProbMoreK1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7784,7 +7784,7 @@ GameObject:
   - component: {fileID: 363706621}
   - component: {fileID: 363706620}
   m_Layer: 5
-  m_Name: Exp1 (2)
+  m_Name: TextExp3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12539,7 +12539,7 @@ GameObject:
   - component: {fileID: 579768547}
   - component: {fileID: 579768546}
   m_Layer: 5
-  m_Name: TextProbNotB (2)
+  m_Name: TextProbK1N
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14385,7 +14385,7 @@ GameObject:
   - component: {fileID: 655199006}
   - component: {fileID: 655199005}
   m_Layer: 5
-  m_Name: TextProbBMNotA (2)
+  m_Name: TextProbBetweenK1K2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16712,7 +16712,7 @@ GameObject:
   - component: {fileID: 707690371}
   - component: {fileID: 707690370}
   m_Layer: 5
-  m_Name: TextProbBoth (3)
+  m_Name: TextProbMoreEqualK1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26883,7 +26883,7 @@ GameObject:
   - component: {fileID: 1021734397}
   - component: {fileID: 1021734396}
   m_Layer: 5
-  m_Name: TextProbANNotB (3)
+  m_Name: TextProbLessEqualK2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28534,7 +28534,7 @@ GameObject:
   - component: {fileID: 1046283658}
   - component: {fileID: 1046283657}
   m_Layer: 5
-  m_Name: ProbNotB (2)
+  m_Name: ProbK1N
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30017,7 +30017,7 @@ GameObject:
   - component: {fileID: 1076986454}
   - component: {fileID: 1076986453}
   m_Layer: 5
-  m_Name: TextProbAnorB (2)
+  m_Name: TextProbK2N
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33429,7 +33429,7 @@ GameObject:
   - component: {fileID: 1178998426}
   - component: {fileID: 1178998425}
   m_Layer: 5
-  m_Name: ProbANotB (2)
+  m_Name: ProbWithinK1K2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35360,7 +35360,7 @@ GameObject:
   - component: {fileID: 1259716008}
   - component: {fileID: 1259716007}
   m_Layer: 5
-  m_Name: TextProbANotB (2)
+  m_Name: TextProbWithinK1K2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45753,7 +45753,7 @@ GameObject:
   - component: {fileID: 1600494701}
   - component: {fileID: 1600494703}
   m_Layer: 5
-  m_Name: ProbBoth (3)
+  m_Name: ProbMoreEqualK1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46837,7 +46837,7 @@ GameObject:
   - component: {fileID: 1628099934}
   - component: {fileID: 1628099932}
   m_Layer: 5
-  m_Name: ProbANNotB (3)
+  m_Name: ProbLessEqualK2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -49569,7 +49569,7 @@ GameObject:
   - component: {fileID: 1726647731}
   - component: {fileID: 1726647730}
   m_Layer: 5
-  m_Name: ProbBMNotA (2)
+  m_Name: ProbBetweenK1K2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -53621,7 +53621,7 @@ GameObject:
   - component: {fileID: 1836238496}
   - component: {fileID: 1836238495}
   m_Layer: 5
-  m_Name: TextProbANNotB (2)
+  m_Name: TextProbLessK2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -54623,7 +54623,7 @@ GameObject:
   - component: {fileID: 1880123460}
   - component: {fileID: 1880123459}
   m_Layer: 5
-  m_Name: ProbANNotB (2)
+  m_Name: ProbLessK2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -56553,7 +56553,7 @@ GameObject:
   - component: {fileID: 1937931954}
   - component: {fileID: 1937931953}
   m_Layer: 5
-  m_Name: TextProbBM (2)
+  m_Name: TextProbKN
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -60526,7 +60526,7 @@ GameObject:
   - component: {fileID: 2082250256}
   - component: {fileID: 2082250255}
   m_Layer: 5
-  m_Name: ProbAnorB (2)
+  m_Name: ProbK2N
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -61454,7 +61454,7 @@ GameObject:
   - component: {fileID: 2103000629}
   - component: {fileID: 2103000628}
   m_Layer: 5
-  m_Name: OutKofN
+  m_Name: ProbKN
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -61680,7 +61680,7 @@ GameObject:
   - component: {fileID: 2107497613}
   - component: {fileID: 2107497612}
   m_Layer: 5
-  m_Name: TextProbBoth (2)
+  m_Name: TextProbMoreK1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62411,8 +62411,8 @@ SceneRoots:
   - {fileID: 764487023}
   - {fileID: 2024571346}
   - {fileID: 634464804}
-  - {fileID: 1302695293}
   - {fileID: 1080964652}
   - {fileID: 48006812}
   - {fileID: 1581335173}
+  - {fileID: 1302695293}
   - {fileID: 542812197}
