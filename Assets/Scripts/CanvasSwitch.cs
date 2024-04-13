@@ -70,6 +70,7 @@ public class CanvasSwitch : MonoBehaviour
         MakeButtonBoldAndDarkenBackground(canvas1Button);
         RevertStyle(canvas2Button);
         RevertStyle(canvas3Button);
+        RevertStyle(canvas4Button);
     }
 
     void Canvas2Activate()
@@ -82,6 +83,7 @@ public class CanvasSwitch : MonoBehaviour
         MakeButtonBoldAndDarkenBackground(canvas2Button);
         RevertStyle(canvas1Button);
         RevertStyle(canvas3Button);
+        RevertStyle(canvas4Button);
     }
     void Canvas3Activate()
     {
@@ -93,6 +95,7 @@ public class CanvasSwitch : MonoBehaviour
         MakeButtonBoldAndDarkenBackground(canvas3Button);
         RevertStyle(canvas1Button);
         RevertStyle(canvas2Button);
+        RevertStyle(canvas4Button);
     }
     void Canvas4Activate()
     {
