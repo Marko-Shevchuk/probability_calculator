@@ -50,7 +50,7 @@ public class CanvasSwitch : MonoBehaviour
         if (!menu2Open)
         {
             menu1.transform.position = new Vector3(menu1.transform.position.x, menu1.transform.position.y + 300, menu1.transform.position.z);
-            menu2.transform.position = new Vector3(menu2.transform.position.x, menu2.transform.position.y - 300, menu2.transform.position.z);
+            menu2.transform.position = new Vector3(menu2.transform.position.x, 410, menu2.transform.position.z);
             menu2Open = true;
             menu1Open = false;
         }
