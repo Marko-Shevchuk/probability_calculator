@@ -10,12 +10,14 @@ public class CanvasSwitch : MonoBehaviour
     public Button canvas2Button;
     public Button canvas3Button;
     public Button canvas4Button;
+    public Button canvas5Button;
     public GameObject menu1;
     public GameObject menu2;
     public GameObject canvas1;
     public GameObject canvas2;
     public GameObject canvas3;
     public GameObject canvas4;
+    public GameObject canvas5;
     private bool menu1Open = false;
     private bool menu2Open = false;
     void Start()
@@ -24,6 +26,7 @@ public class CanvasSwitch : MonoBehaviour
         canvas2Button.onClick.AddListener(Canvas2Activate);
         canvas3Button.onClick.AddListener(Canvas3Activate);
         canvas4Button.onClick.AddListener(Canvas4Activate);
+        canvas5Button.onClick.AddListener(Canvas5Activate);
         menu1Button.onClick.AddListener(Menu1Activate);
         menu2Button.onClick.AddListener(Menu2Activate);
         Canvas1Activate();
@@ -66,11 +69,13 @@ public class CanvasSwitch : MonoBehaviour
         canvas2.SetActive(false);
         canvas3.SetActive(false);
         canvas4.SetActive(false);
+        canvas5.SetActive(false);
 
         MakeButtonBoldAndDarkenBackground(canvas1Button);
         RevertStyle(canvas2Button);
         RevertStyle(canvas3Button);
         RevertStyle(canvas4Button);
+        RevertStyle(canvas5Button);
     }
 
     void Canvas2Activate()
@@ -78,11 +83,13 @@ public class CanvasSwitch : MonoBehaviour
         canvas2.SetActive(true);
         canvas1.SetActive(false);
         canvas3.SetActive(false);
+        canvas5.SetActive(false);
         canvas4.SetActive(false);
 
         MakeButtonBoldAndDarkenBackground(canvas2Button);
         RevertStyle(canvas1Button);
         RevertStyle(canvas3Button);
+        RevertStyle(canvas5Button);
         RevertStyle(canvas4Button);
     }
     void Canvas3Activate()
@@ -90,11 +97,13 @@ public class CanvasSwitch : MonoBehaviour
         canvas2.SetActive(false);
         canvas1.SetActive(false);
         canvas3.SetActive(true);
+        canvas5.SetActive(false);
         canvas4.SetActive(false);
 
         MakeButtonBoldAndDarkenBackground(canvas3Button);
         RevertStyle(canvas1Button);
         RevertStyle(canvas2Button);
+        RevertStyle(canvas5Button);
         RevertStyle(canvas4Button);
     }
     void Canvas4Activate()
@@ -102,13 +111,30 @@ public class CanvasSwitch : MonoBehaviour
         canvas2.SetActive(false);
         canvas1.SetActive(false);
         canvas3.SetActive(false);
+        canvas5.SetActive(false);
         canvas4.SetActive(true);
 
         MakeButtonBoldAndDarkenBackground(canvas4Button);
         RevertStyle(canvas1Button);
         RevertStyle(canvas2Button);
+        RevertStyle(canvas5Button);
         RevertStyle(canvas3Button);
     }
+    void Canvas5Activate()
+    {
+        canvas2.SetActive(false);
+        canvas1.SetActive(false);
+        canvas3.SetActive(false);
+        canvas4.SetActive(false);
+        canvas5.SetActive(true);
+
+        MakeButtonBoldAndDarkenBackground(canvas5Button);
+        RevertStyle(canvas1Button);
+        RevertStyle(canvas2Button);
+        RevertStyle(canvas4Button);
+        RevertStyle(canvas3Button);
+    }
+
 
     void MakeButtonBoldAndDarkenBackground(Button button)
     {
